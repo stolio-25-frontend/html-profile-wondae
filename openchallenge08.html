@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>겜블링게임</title>
+  <style>
+    div{
+      width: 300px;
+      height: 100px;
+      display: flex;
+      border: 1px solid black;
+      background-color: salmon;
+      justify-content: space-around;
+      align-items: center;
+      cursor: pointer;
+    }
+    span{
+      font-size: 80px;
+      padding: 20px;
+      cursor: pointer;
+    }
+    #result {
+      color: red;
+    }
+  </style>
+  <script>
+    function change_num(id){
+      var num = Math.round(Math.random()*2);
+      document.getElementById(id).innerHTML = num;
+    }
+
+    function check_num(){
+      resultElement = document.getElementById("result");
+      num1Element = document.getElementById("first");
+      num2Element = document.getElementById("second");
+      num3Element = document.getElementById("third");
+
+      if(num1Element.innerHTML == num2Element.innerHTML && num1Element.innerHTML == num3Element.innerHTML){
+        resultElement.innerHTML="success (click number to play again)"
+      }
+      else{
+        resultElement.innerHTML="fail (click number to play again)"
+      }
+    }
+    function reset(){
+      resultElement.innerHTML="";
+      num1Element.innerHTML="0";
+      num2Element.innerHTML="0";
+      num3Element.innerHTML="0";
+    }
+
+  </script>
+</head>
+<body>
+<h3>겜블링 게임</h3>
+<br>
+<p>각 숫자를 클릭하면 0에서 2사이의 난수로 바뀝니다. 모두 같은 수가 나오면 승리합니다.</p>
+<hr>
+<div>
+  <span id="first" onclick="change_num(id);">0</span>
+  <span id="second" onclick="change_num(id);">0</span>
+  <span id="third" onclick="change_num(id); check_num()">0</span>
+</div>
+<p id="result" onclick="reset()"></p>
+</body>
+</html>
